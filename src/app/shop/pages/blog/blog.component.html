@@ -1,0 +1,17 @@
+<app-page-header [data]="pageHeaderData" />
+
+<div id="blog">
+    @for(item of blogItems; track $index) {
+    <div class="blog-box">
+        <div class="blog-img">
+            <img [src]="item.img" alt="">
+        </div>
+        <div class="blog-details">
+            <h4>{{item.title}}</h4>
+            <p>{{item.text}}</p>
+            <a href="#">CONTINUAR LEYENDO</a>
+        </div>
+        <h1>{{item.datePosted | date: 'dd/MM'}}</h1>
+    </div>
+    }
+</div>

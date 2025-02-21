@@ -1,0 +1,62 @@
+<app-page-header [data]="pageHeaderData" />
+
+<div id="cart" class="section-p1">
+    <table width="100%">
+        <thead>
+            <tr>
+                <td>Remover</td>
+                <td>Imagen</td>
+                <td>Producto</td>
+                <td>Precio</td>
+                <td>Cantidad</td>
+                <td>Subtotal</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for(item of cartItems; track $index) {
+            <tr>
+                <td><i class="fa fa-trash"><a href="#"></a></i></td>
+                <td><img [src]="item.img" alt=""></td>
+                <td>{{item.title}}</td>
+                <td>${{item.price}}</td>
+                <td><input type="number" [value]="item.quantity || 1"></td>
+                <td>${{item.subtotal}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="cart-add" class="section-p1">
+    <div id="coupon">
+        <h3>Apply Coupon</h3>
+        <div>
+            <input type="text" placeholder="Enter Your Coupon">
+            <button class="normal">Apply</button>
+        </div>
+    </div>
+    <div id="subtotal">
+        <h3>Cart Totals</h3>
+        <table>
+            <tr>
+                <td>Cart Subtotal</td>
+                <td>$335</td>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td>Free</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>$335</strong></td>
+            </tr>
+        </table>
+        <button (click)="togglePaymentForm()" class="normal">Proceed to checkout</button>
+    </div>
+</div>
+
+@if (showPaymentForm()) {
+<div class="modal-backdrop" *ngIf="showPaymentForm()"></div>
+
+<app-pay-form />
+}

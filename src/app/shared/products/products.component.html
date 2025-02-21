@@ -1,0 +1,20 @@
+<div class="pro-container">
+    @for (item of products; track $index) {
+    <div class="pro" (click)="productDetail(item.id)">
+        <img [src]="item.image" alt="">
+        <div class="des">
+            <span>{{item.brand}}</span>
+            <h5>{{item.title}}</h5>
+            <div class="star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <h4>$78</h4>
+        </div>
+        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    }
+</div>

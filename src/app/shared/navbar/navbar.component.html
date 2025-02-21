@@ -1,0 +1,35 @@
+<div id="header">
+    <a href="#"><img src="assets/logos/logo.png" class="logo" alt=""></a>
+    <nav>
+        <ul id="navbar" [ngClass]="menuHidden() ? '' : 'active'">
+            @for (item of menuItems; track $index) {
+            <li><a [routerLink]="item.path" (click)="toggleMenu()" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">{{item.title}}</a></li>
+            }
+            <li id="lg-bag"><a routerLink="cart" routerLinkActive="active"><i class="far fa-shopping-bag"></i></a></li>
+
+            <li id="lg-user">
+                <a (click)="toggleDropDownMenu()" [ngClass]="dropDownIsVisible() ? 'dropdowned': ''">
+                    <i class="fa fa-user-circle"></i>
+                </a>
+            </li>
+            <a (click)="toggleMenu()" id="close"><i class="far fa-times"></i></a>
+        </ul>
+    </nav>
+    <div id="mobile" *ngIf="menuHidden()">
+        <a routerLink="cart" routerLinkActive="active"><i class="far fa-shopping-bag"></i></a>
+        <a (click)="toggleDropDownMenu()" [ngClass]="dropDownIsVisible() ? 'dropdowned': ''">
+            <i class="far fa-user"></i>
+        </a>
+        <i class="fas fa-outdent" (click)="toggleMenu()"></i>
+    </div>
+    <ul id="dropdown-menu" *ngIf="dropDownIsVisible()">
+        @for(dropdownItem of dropdownItems; track $index) {
+        <li>
+            <a [routerLink]="dropdownItem.url" routerLinkActive="active">
+                <i [class]="dropdownItem.icon"></i> {{dropdownItem.text}}
+            </a>
+        </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,58 @@
+<app-page-header [data]="pageHeaderData" />
+
+<div id="contact-details" class="section-p1">
+    <div class="details">
+        <span>CONTÁCTANOS</span>
+        <h2>¡Visita una de nuestras oficinas o contáctanos hoy mismo!</h2>
+        <h3>Oficina Principal</h3>
+        <div>
+            <li>
+                <i class="fal fa-map"></i>
+                <p>56 Glassford Street Glasgow G1 1UL Nueva York</p>
+            </li>
+            <li>
+                <i class="far fa-envelope"></i>
+                <p>{{"contact@example.com"}}</p>
+            </li>
+            <li>
+                <i class="fas fa-phone-alt"></i>
+                <p>{{"contact@contact.com"}}</p>
+            </li>
+            <li>
+                <i class="far fa-clock"></i>
+                <p>Lunes a Sábado: 9:00 AM a 4:00 PM</p>
+            </li>
+        </div>
+    </div>
+    <div class="map">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2239.236779519667!2d-4.251206024054544!3d55.85855818384155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x488846a1bd9f3a95%3A0x474b237644107774!2sClub%20Gym%20Wellness%20-%20City%20Centre%2C%2056%20Glassford%20St%2C%20Glasgow%20G1%201UL%2C%20Reino%20Unido!5e0!3m2!1ses!2sco!4v1739910033566!5m2!1ses!2sco"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</div>
+
+<div id="form-details">
+    <form action="">
+        <span>DEJA UN MENSAJE</span>
+        <h2>Nos encanta saber de ti</h2>
+        <input type="text" placeholder="Tú nombre">
+        <input type="text" placeholder="correo electronico">
+        <input type="text" placeholder="Asunto">
+        <textarea name="" id="" cols="30" rows="10" placeholder="Tú mensaje"></textarea>
+        <button class="normal">ENVIAR</button>
+    </form>
+
+    <div class="people">
+        @for(person of people; track $index) {
+        <div>
+            <img [src]="person.img" alt="">
+            <p><span>{{person.name}}</span>{{person.title}}<br>
+                Teléfono: {{person.phone}} <br>
+                Email: {{person.email}}
+            </p>
+        </div>
+        }
+    </div>
+</div>
+
+<app-newsletter />
