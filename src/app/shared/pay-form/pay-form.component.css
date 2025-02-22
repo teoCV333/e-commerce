@@ -439,3 +439,180 @@ input {
 .close-payment-modal:hover i {
   color: red;
 }
+
+@media (max-width: 1024px) {
+  .container {
+    width: 33%;
+  }
+  .field-container {
+    margin-top: 6px;
+  }
+  .next-button i {
+    font-size: 30px;
+  }
+  #ccsingle[_ngcontent-ng-c2618387434]   svg[_ngcontent-ng-c2618387434] {
+    width: 100%;
+    max-height: 21px;
+  }
+  #ccicon{
+    right: 6px;
+    top: calc(50% - 13px);
+  }
+  .subtitle {
+    justify-content: center;
+    display: flex
+  }
+  .subtitle h4 {
+    width: 80%;
+  }
+  .prev-button i, .close-payment-modal i {
+    font-size: 30px;
+  }
+  .prev-button {
+    left: 20px;
+    top: 20px;
+  }
+}
+@media (max-width: 799px) {
+  .payment-container {
+    top: 15%;
+    min-height: 70vh;
+  }
+  .payment-title h1, .validation-title h1 {
+    font-size: 25px;
+  }
+  .subtitle {
+    justify-content: center;
+    display: flex
+  }
+  .subtitle h4 {
+    width: 80%;
+  }
+  .container {
+    padding: 9px;
+    z-index: 999;
+    height: 16vw;
+    overflow-y: visible;
+  }
+  #ccsingle[_ngcontent-ng-c2618387434]   svg[_ngcontent-ng-c2618387434] {
+    width: 100%;
+    max-height: 21px;
+  }
+  #ccicon {
+    right: 0px;
+    top: calc(50% - 3px);
+    height: 28px;
+    width: 22%;
+  }
+  .form-container, .validation-form-container {
+    width: 50%;
+    grid-template-rows: 60px 60px 60px 60px;
+  }
+
+  .form-container input {
+    height: 22px;
+    font-size: 12px;
+  }
+
+  .form-container label {
+    font-size: 10px;
+  }
+  #finishBtn {
+    margin-top: 33px;
+  }
+  .validation-form-container {
+    width: 100%;
+    grid-template-rows: 60px 60px 60px;
+    gap: 13px;
+  }
+  .validation-form-container input{
+    height: 44px;
+  }
+  .validation-form-container .field-container {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 499px) {
+  .payment-container {
+    top: 5%;
+    min-height: fit-content;
+    padding: 10px;
+  }
+  .validation-title {
+    height: 55px;
+  }
+  .payment-title h1, .validation-title h1{
+    font-size: 14px;
+  }
+  .subtitle {
+    justify-content: center;
+    display: flex;
+  }
+  .subtitle h4 {
+    font-size: 12px;
+  }
+  #ccicon {
+    right: 0.2rem;
+    top: calc(50% - 1px);
+    height: 25px;
+    width: 19%;
+  }
+  .container {
+    width: 66%;
+    height: 35vw;
+    padding: 9px 0px;
+  }
+  .form-container, .validation-form-container {
+    width: 100%;
+    padding: 0px 3px 6px 3px;
+  }
+  .form-container input{
+    width: 100%;
+    font-size: 10px;
+  }
+  .form-container label{
+    font-size: 9px;
+  }
+  .close-payment-modal {
+    top: 15px;
+    right: 20px;
+  }
+  .close-payment-modal i {
+    font-size: 20px;
+  }
+  #finishBtn {
+    margin-top: 25px;
+    width: 90%;
+    height: 9%;
+  }
+  .validation-form-container {
+    gap: 6px;
+    width: 90%;
+  }
+  .owner-validation {
+    height: fit-content;
+  }
+  .owner-validation .subtitle h4{
+    font-size: 10px;
+    width: 100%;
+    padding: 0px 9px;
+  }
+  .validation-title h1 {
+    font-size: 14px;
+  }
+  .validation-form-container input{
+    height: 29px;
+    font-size: 12px;
+  }
+  .validation-form-container .field-container {
+    margin-top: 10px;
+  }
+  .prev-button i, .next-button i {
+    font-size: 21px;
+  }
+  .prev-button {
+    left: 15px;
+    top: 15px;
+  }
+}

@@ -103,6 +103,11 @@ export class PayFormComponent {
       regex: '^62\\d{0,14}',
       cardtype: 'unionpay',
     },
+    {
+      mask: '0000 0000 0000 0000',
+      regex: '',
+      cardtype: 'unknow',
+    },
   ];
 
   paymentForm = new FormGroup({
@@ -319,6 +324,8 @@ export class PayFormComponent {
         this.swapColor('cyan');
         break;
       case 'unknow':
+        this.ccsingle.nativeElement.innerHTML = '';
+        this.ccicon.nativeElement.innerHTML = '';
         this.swapColor('grey');
         break;
       default:

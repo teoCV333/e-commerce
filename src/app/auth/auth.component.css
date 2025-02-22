@@ -178,7 +178,7 @@ p {
   line-height: 20px;
   letter-spacing: 0.5px;
   color: #fff;
-  margin: 20px 0px 20px;
+  margin: 0px 0px 20px;
 }
 .overlay-panel button {
   border: none;
@@ -353,10 +353,13 @@ button {
   }
   .overlay-panel {
     width: 40%;
-    padding: 0px 8px;
+    padding: 0px 0px;
   }
+  .overlay-panel button {
+    font-size: 10px;
+}
   h1 {
-    font-size: 25px;
+    font-size: 18px;
     line-height: 33px;
   }
   .right-panel-active .overlay {
@@ -366,12 +369,13 @@ button {
     padding: 12px 25px;
   }
   #overlayBtn {
-    top: 320px;
+    top: 296px;
     width: 109px;
   }
   p {
     padding: 0px 0px;
     line-break: auto;
+    font-size: 11px;
   }
 }
 
@@ -381,13 +385,13 @@ button {
   }
 
   p {
-    font-size: 13px;
-    padding: 2px 0px;
-    line-break: anywhere;
+    font-size: 10px;
+    padding: 2px 7px;
+    line-break: auto;
   }
 
   #overlayBtn {
-    top: 333px;
+    top: 315px;
   }
 
   button {

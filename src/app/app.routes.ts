@@ -43,6 +43,16 @@ export const routes: Routes = [
         loadComponent: () => import('./shop/pages/cart/cart.component'),
       },
       {
+        path: 'profile',
+        title: '',
+        loadComponent: () => import('./shop/pages/user-profile/user-profile.component'),
+      },
+      {
+        path: 'orders',
+        title: '',
+        loadComponent: () => import('./shop/pages/orders-history/orders-history.component'),
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',

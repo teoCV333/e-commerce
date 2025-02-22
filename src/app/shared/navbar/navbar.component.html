@@ -26,7 +26,8 @@
     <ul id="dropdown-menu" *ngIf="dropDownIsVisible()">
         @for(dropdownItem of dropdownItems; track $index) {
         <li>
-            <a [routerLink]="dropdownItem.url" routerLinkActive="active">
+            <a [routerLink]="dropdownItem.url" routerLinkActive="active" (click)="toggleDropDownMenu()"
+                [routerLinkActiveOptions]="{exact: true}">
                 <i [class]="dropdownItem.icon"></i> {{dropdownItem.text}}
             </a>
         </li>

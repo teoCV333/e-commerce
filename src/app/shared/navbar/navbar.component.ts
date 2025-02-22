@@ -27,18 +27,21 @@ export class NavbarComponent {
       text: 'Mi Perfil',
     },
     {
-      url: 'history',
+      url: 'orders',
       icon: 'far fa-list-ul',
       text: 'Mis ordenes',
     },
-    {
-      url: 'profile',
+    { 
+      url: '/auth',
       icon: 'far fa-sign-out',
       text: 'Cerrar sesión',
     },
   ];
 
   toggleMenu() {
+    if(this.dropDownIsVisible()) {
+      this.toggleDropDownMenu()
+    }
     this.menuHidden.update((current) => !current);
   }
 
