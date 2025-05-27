@@ -36,8 +36,9 @@
 }
 
 #cart table td:nth-child(5) input {
-  width: 70px;
-  padding: 10px 5px 10px 15px;
+  width: 33px;
+  margin-inline: 3px;
+  padding: 10px 5px 10px 5px;
 }
 
 #cart table thead {
@@ -70,8 +71,12 @@
   cursor: pointer;
 }
 
-#cart table tbody td i:hover {
+#cart table tbody td i:hover, i.decrement-cart:hover {
   color: red;
+}
+
+#cart table tbody td i.increment-cart:hover {
+  color: green;
 }
 
 #cart-add {

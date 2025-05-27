@@ -1,7 +1,9 @@
-import { Component, inject, Input, OnInit, signal } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../interfaces/product';
 import { Router } from '@angular/router';
+import { CartService } from '../../services/cart.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-products-component',
@@ -13,6 +15,8 @@ export class ProductsComponent implements OnInit {
   @Input({ required: true }) filter!: string;
 
   productsService = inject(ProductsService);
+  cartService = inject(CartService);
+  alertService = inject(AlertService)
   products: Product[] = [];
 
   constructor(private router: Router) {
@@ -37,5 +41,13 @@ export class ProductsComponent implements OnInit {
 
   productDetail(id: string) {
     this.router.navigate(['shop/product', id]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  addToCart(id: string, event: MouseEvent) {
+    event.stopPropagation(); 
+    this.cartService.addProduct(id);
+    this.alertService.addToCartAlert()
+  }
+
 }

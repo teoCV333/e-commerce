@@ -13,13 +13,17 @@
             </tr>
         </thead>
         <tbody>
-            @for(item of cartItems; track $index) {
+            @for(item of cartItems(); track $index) {
             <tr>
-                <td><i class="fa fa-trash"><a href="#"></a></i></td>
+                <td><i (click)="removeItem(item.id)" class="fa fa-trash"></i></td>
                 <td><img [src]="item.img" alt=""></td>
                 <td>{{item.title}}</td>
                 <td>${{item.price}}</td>
-                <td><input type="number" [value]="item.quantity || 1"></td>
+                <td>
+                    <a (click)="decreaseQty(item.id)"><i class="fa fa-minus decrement-cart"></i></a>
+                    <input [value]="item.quantity" min="1" (change)="updateQty($event, item.id)">
+                    <a (click)="increaseQty(item.id)"><i class="fa fa-plus increment-cart"></i></a>
+                </td>
                 <td>${{item.subtotal}}</td>
             </tr>
             }
@@ -40,7 +44,7 @@
         <table>
             <tr>
                 <td>Cart Subtotal</td>
-                <td>$335</td>
+                <td>${{cartTotal()}}</td>
             </tr>
             <tr>
                 <td>Shipping</td>
@@ -48,7 +52,7 @@
             </tr>
             <tr>
                 <td><strong>Total</strong></td>
-                <td><strong>$335</strong></td>
+                <td><strong>${{cartTotal()}}</strong></td>
             </tr>
         </table>
         <button (click)="togglePaymentForm()" class="normal">Proceed to checkout</button>

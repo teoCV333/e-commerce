@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Product } from '../interfaces/product';
+import { of } from 'rxjs';
 
 interface State {
   products: Product[];
@@ -276,6 +277,8 @@ export class ProductsService {
   constructor() {}
 
   getProductById(id: string) {
-    return this.products.filter((product) => product.id === id);
+    const product = this.products.find((product) => product.id === id);
+    return of(product); // Wrap in observable
   }
+
 }

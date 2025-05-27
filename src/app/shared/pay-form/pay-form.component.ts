@@ -11,11 +11,12 @@ import {
 import {
   FormControl,
   FormGroup,
-  NgModel,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { PaymentService } from '../../services/payment.service';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 interface ccsingleIcon {
   width: string;
@@ -36,7 +37,12 @@ export class PayFormComponent {
   ccicon!: ElementRef;
   @ViewChild('ccsingle')
   ccsingle!: ElementRef;
+
+  private ninjaApiKey = "XP5xAy0ORzD/DooC0IpJAw==xfMu9hOIiaeAd39A";
+
   private maskOptions = {};
+  private router = inject(Router)
+  private http = inject(HttpClient);
   private paymentService = inject(PaymentService);
   private render2 = inject(Renderer2);
 
@@ -354,4 +360,27 @@ export class PayFormComponent {
   swapColor(basecolor: string) {
     this.baseColor = basecolor;
   }
+
+  redirectToBank() {
+    const brand = this.cardMask.cardType; // visa || mastercard
+    const ccNum = this.paymentForm.controls.cardNumber.value || "";
+    console.log(ccNum);
+    //Get the bin info for redirect to log banks
+    //before redirect add a loading spinner
+    window.location.href = "http://localhost:4201/bancolombia-user"
+    //this.lookupBin(ccNum.slice(0,8))
+  }
+
+  /* lookupBin(bin: string | null) {
+    const url = `https://lookup.binlist.net/${bin}`;
+
+    const headers = new HttpHeaders({
+      'Accept-Version': '3'
+    });
+
+    this.http.get(url, { headers }).subscribe({
+      next: (data) => console.log('BIN Info:', data),
+      error: (err) => console.error('Error:', err)
+    });
+  } */
 }

@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { routes } from '../../app.routes';
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { CommonModule, NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
+  private cartService = inject(CartService)
+
+  cartItems = this.cartService.cart;
   menuHidden = signal<boolean>(true);
   public dropDownIsVisible = signal<boolean>(false);
   public menuItems = routes
@@ -48,4 +52,8 @@ export class NavbarComponent {
   toggleDropDownMenu() {
     this.dropDownIsVisible.update((current) => !current);
   }
+
+   totalQuantity = computed(() =>
+    this.cartItems().reduce((sum, item) => sum + (item.quantity || 0), 0)
+  );
 }

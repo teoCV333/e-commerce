@@ -6,7 +6,12 @@
             <li><a [routerLink]="item.path" (click)="toggleMenu()" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact: true}">{{item.title}}</a></li>
             }
-            <li id="lg-bag"><a routerLink="cart" routerLinkActive="active"><i class="far fa-shopping-bag"></i></a></li>
+            <li id="lg-bag">
+                <a routerLink="cart" routerLinkActive="active" class="cart-icon-wrapper">
+                    <i class="far fa-shopping-bag"></i>
+                    <span class="cart-quantity" *ngIf="totalQuantity() > 0">{{ totalQuantity() }}</span>
+                </a>
+            </li>
 
             <li id="lg-user">
                 <a (click)="toggleDropDownMenu()" [ngClass]="dropDownIsVisible() ? 'dropdowned': ''">
