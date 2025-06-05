@@ -102,6 +102,11 @@ input {
   border: 1px solid #dcdcdc;
 }
 
+input.ng-invalid.ng-touched,
+input.ng-invalid.ng-dirty {
+  border: 2px solid red;
+}
+
 .ccicon {
   height: 38px;
   position: absolute;

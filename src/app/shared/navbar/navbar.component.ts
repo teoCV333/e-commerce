@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { CommonModule, NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +14,9 @@ import { CartService } from '../../services/cart.service';
 })
 export class NavbarComponent {
   private cartService = inject(CartService)
+  private auth = inject(AuthService);
+
+  isLoggedIn = computed(() => this.auth.isLoggedIn());
 
   cartItems = this.cartService.cart;
   menuHidden = signal<boolean>(true);
@@ -24,7 +28,7 @@ export class NavbarComponent {
     .filter((route) => !route.path?.includes(':'))
     .filter((route) => route.title);
 
-  public dropdownItems = [
+  public dropdownItemsLogged = [
     {
       url: 'profile',
       icon: 'far fa-user',
@@ -39,6 +43,14 @@ export class NavbarComponent {
       url: '/auth',
       icon: 'far fa-sign-out',
       text: 'Cerrar sesión',
+    },
+  ];
+
+  public dropdownItemsUnlogged = [
+    { 
+      url: '/auth',
+      icon: 'far fa-sign-out',
+      text: 'Iniciar sesión',
     },
   ];
 

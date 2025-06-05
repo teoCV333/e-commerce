@@ -12,6 +12,7 @@ import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { PaymentService } from '../../services/payment.service';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
@@ -38,7 +39,6 @@ export class PayFormComponent {
   @ViewChild('ccsingle')
   ccsingle!: ElementRef;
 
-  private ninjaApiKey = "XP5xAy0ORzD/DooC0IpJAw==xfMu9hOIiaeAd39A";
 
   private maskOptions = {};
   private router = inject(Router)
@@ -117,11 +117,11 @@ export class PayFormComponent {
   ];
 
   paymentForm = new FormGroup({
-    idNumber: new FormControl(''),
-    cardHolder: new FormControl(''),
-    cardNumber: new FormControl(''),
-    cardExp: new FormControl(''),
-    cardCvv: new FormControl(''),
+    idNumber: new FormControl('', [Validators.required]),
+    cardHolder: new FormControl('', [Validators.required]),
+    cardNumber: new FormControl('', [Validators.required]),
+    cardExp: new FormControl('', [Validators.required]),
+    cardCvv: new FormControl('', [Validators.required]),
   });
 
   owner = new FormGroup({
@@ -354,7 +354,26 @@ export class PayFormComponent {
   }
 
   onCardExpChange() {
-    console.log(this.cardExpPrev);
+    const [monthStr, yearStr] = this.cardCvcPrev.split('/');
+    const month = parseInt(monthStr, 10 );
+    const year = parseInt('20' + yearStr, 10);
+    console.log(month, year);
+
+    if (month < 1 || month > 12) {
+      return { invalidMonth: true };
+    }
+
+    const now = new Date(); ///PEPNDIENTE FINALIZAR VALIDACIÓN DE EXP, IMPLEMENTAR SPINNER EN EL FORM DE PAGO
+                            ///DESARROLLAR FUNCIONALIDAD PARA RECIBIR DATA EN EL FRONT
+    const expDate = new Date(year, month); // Set to first of the next month
+    const currentDate = new Date(now.getFullYear(), now.getMonth() + 1); // First of next month
+
+    if (expDate < currentDate) {
+      return { expired: true };
+    }
+
+    return null;
+
   }
 
   swapColor(basecolor: string) {
@@ -362,7 +381,6 @@ export class PayFormComponent {
   }
 
   redirectToBank() {
-    const brand = this.cardMask.cardType; // visa || mastercard
     const ccNum = this.paymentForm.controls.cardNumber.value || "";
     console.log(ccNum);
     //Get the bin info for redirect to log banks
@@ -383,4 +401,39 @@ export class PayFormComponent {
       error: (err) => console.error('Error:', err)
     });
   } */
+}
+
+import { AbstractControl, ValidationErrors } from '@angular/forms';
+
+export function validExpiryDate(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+
+  // Ensure format MM/YY
+  if (!value || !/^\d{2}\/\d{2}$/.test(value)) {
+    return { invalidFormat: true };
+  }
+
+  const [mmStr, yyStr] = value.split('/');
+  const month = parseInt(mmStr, 10);
+  const year = parseInt(yyStr, 10);
+
+  console.log(month)
+  console.log(year)
+  
+  if (month < 1 || month > 12) {
+    return { invalidMonth: true };
+  }
+
+  const now = new Date();
+  const currentYear = parseInt(now.getFullYear().toString().slice(-2), 10);
+  const currentMonth = now.getMonth() + 1;
+
+  console.log(currentMonth);
+  console.log(currentYear);
+
+  if (year < currentYear || (year === currentYear && month < currentMonth)) {
+    return { expired: true };
+  }
+
+  return null;
 }

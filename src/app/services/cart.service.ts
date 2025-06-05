@@ -27,20 +27,20 @@ export class CartService {
     )[0];
   }
 
-  addProduct(productId: string) {
-    this.cart.update((items) => {
-      const existingItem = items.find((item) => item.productId === productId);
-      if (existingItem) {
-        return items.map((item) =>
-          item.productId === productId
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        return [...items, { productId, quantity: 1 }];
-      }
-    });
-  }
+ addProduct(productId: string, quantity: number = 1) {
+  this.cart.update((items) => {
+    const existingItem = items.find((item) => item.productId === productId);
+    if (existingItem) {
+      return items.map((item) =>
+        item.productId === productId
+          ? { ...item, quantity: item.quantity + quantity } // Use actual quantity
+          : item
+      );
+    } else {
+      return [...items, { productId, quantity }];
+    }
+  });
+}
 
   /** Remove a product entirely */
   removeProduct(productId: string) {

@@ -10,6 +10,7 @@
                 <a routerLink="cart" routerLinkActive="active" class="cart-icon-wrapper">
                     <i class="far fa-shopping-bag"></i>
                     <span class="cart-quantity" *ngIf="totalQuantity() > 0">{{ totalQuantity() }}</span>
+                    <span class="cart-quantity" *ngIf="totalQuantity() > 9">9+</span>
                 </a>
             </li>
 
@@ -29,13 +30,24 @@
         <i class="fas fa-outdent" (click)="toggleMenu()"></i>
     </div>
     <ul id="dropdown-menu" *ngIf="dropDownIsVisible()">
-        @for(dropdownItem of dropdownItems; track $index) {
+        @if(isLoggedIn()) {
+        @for(dropdownItem of dropdownItemsLogged; track $index) {
         <li>
             <a [routerLink]="dropdownItem.url" routerLinkActive="active" (click)="toggleDropDownMenu()"
                 [routerLinkActiveOptions]="{exact: true}">
                 <i [class]="dropdownItem.icon"></i> {{dropdownItem.text}}
             </a>
         </li>
+        }
+        } @else {
+        @for(dropdownItem of dropdownItemsUnlogged; track $index) {
+        <li>
+            <a [routerLink]="dropdownItem.url" routerLinkActive="active" (click)="toggleDropDownMenu()"
+                [routerLinkActiveOptions]="{exact: true}">
+                <i [class]="dropdownItem.icon"></i> {{dropdownItem.text}}
+            </a>
+        </li>
+        }
         }
     </ul>
 </div>

@@ -117,7 +117,7 @@
         <a class="close-payment-modal" (click)="closePaymentModal()"><i class="far fa-times"></i></a>
         <div class="field-container">
             <label for="name">Nombre</label>
-            <input id="name" maxlength="22" type="text" formControlName="cardHolder" [(ngModel)]="cardHolderPrev">
+            <input id="name" type="text" formControlName="cardHolder" [(ngModel)]="cardHolderPrev">
         </div>
         <div class="field-container">
             <label for="cardnumber">Número de la tarjeta</label>
@@ -140,7 +140,7 @@
         <div class="field-container">
             <label for="securitycode">CVC/CVV</label>
             <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric" formControlName="cardCvv"
-                mask="0000" [(ngModel)]="cardCvcPrev">
+                [(ngModel)]="cardCvcPrev">
         </div>
     </form>
     <a (click)="changePage()" class="next-button"><i class="far fa-chevron-circle-right"></i></a>
